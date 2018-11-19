@@ -1,9 +1,10 @@
 from django.http import JsonResponse
 from django.views import View
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
-from book_api.models import Book
+from movie_app.models import Movie
 from django.contrib import auth
 from django.shortcuts import render
 import json
@@ -21,6 +22,9 @@ def logout(request):
 	return JsonResponse({"data": "logout successful"}, safe=False)
 
 class CreateUser(View):
+	@method_decorator(csrf_exempt)
+	def dispatch(self, request, *args, **kwargs):
+		return super(CreateUser, self).dispatch(request, *args, **kwargs)
 
 	def post(self, request):
 
