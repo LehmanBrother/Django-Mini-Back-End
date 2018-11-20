@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from movie_app.models import Movie
 from django.contrib import auth
 from django.shortcuts import render
+
 import json
 
 # Create your views here.
@@ -35,9 +36,11 @@ class CreateUser(View):
 			new_user.set_password(new_user.password)
 			new_user.save()
 			auth.login(request, new_user)
+			print(request, '<--here is request')
+			print(new_user)
 			return JsonResponse({"data": "registration successful"}, safe=False)
 		except:
-			return JsonResponse({"error": "registration unsuccessful"}, safe=False)
+			return JsonResponse({"error": 'unsucces'}, safe=False)
 
 class Authentication(View):
 

@@ -27,7 +27,7 @@ class Movies(View):
 			return JsonResponse({
 				'Content-Type': 'application/json',
 				'status': 200,
-				'message': 'Must be logged in to see the data'
+				'message': 'Not Logged'
 				}, safe=False)
 
 	#@method_decorator(login_required)
